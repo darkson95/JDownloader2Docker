@@ -9,7 +9,7 @@ ENV GROUP_ID=100
 ENV APP_NAME="JDownloader2"
 ENV WIDTH=1280
 ENV HEIGHT=720
-RUN locale-gen de_DE.UTF-8  
+# RUN locale-gen de_DE.UTF-8  
 ENV LANG de_DE.UTF-8  
 ENV LANGUAGE de_DE:de  
 ENV LC_ALL de_DE.UTF-8
@@ -22,13 +22,13 @@ CMD ["/sbin/my_init"]
 # Installation
 COPY /src/filebot_4.7.9_amd64.deb /tmp/filebot_4.7.9_amd64.deb
 RUN \
-echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' > /etc/apt/sources.list && \
-echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates main universe restricted' >> /etc/apt/sources.list && \
-mkdir -p /etc/my_init.d && \
-export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
-apt-get update && \
-apt-get install -y firefox dos2unix default-jre && \
-dpkg -i /tmp/filebot_4.7.9_amd64.deb 
+    echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' > /etc/apt/sources.list && \
+    echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates main universe restricted' >> /etc/apt/sources.list && \
+    mkdir -p /etc/my_init.d && \
+    export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y firefox dos2unix default-jre openvpn && \
+    dpkg -i /tmp/filebot_4.7.9_amd64.deb 
 
 # Install steps for X app
 # Copy X app start script to right location
